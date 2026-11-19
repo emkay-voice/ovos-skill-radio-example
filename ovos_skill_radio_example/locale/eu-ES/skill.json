@@ -1,0 +1,16 @@
+{
+  "skill_id": "ovos-skill-radio-example.emkay-voice",
+  "source": "https://github.com/emkay-voice/ovos-skill-radio-example",
+  "name": "Nire irratia",
+  "description": "Zure interneteko irrati kateak erreproduzitzen ditu – hemen SomaFM-ren hiru – OpenVoiceOS-en multimedia erreproduzitzailearekin.",
+  "examples": [
+    "Erreproduzitu Emkay Chill",
+    "Jarri irratia"
+  ],
+  "tags": [
+    "radio",
+    "media",
+    "ocp",
+    "emkay"
+  ]
+}

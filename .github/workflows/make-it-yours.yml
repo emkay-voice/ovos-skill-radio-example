@@ -1,0 +1,39 @@
+# When you make a repository from this template ("Use this template"), this
+# runs once and makes the skill yours: the package, the skill id and the
+# links get your repository's name, then this file deletes itself.
+#
+#   repository  you/coffee-facts   ->  ovos-skill-coffee-facts
+#                                      skill id ovos-skill-coffee-facts.you
+#   repository  you/ovos-skill-x   ->  ovos-skill-x, skill id ovos-skill-x.you
+name: Make it yours
+on: [push]
+permissions:
+  contents: write
+jobs:
+  rename:
+    if: github.repository != 'emkay-voice/ovos-skill-radio-example'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rename the skill after this repository
+        run: |
+          repo="${GITHUB_REPOSITORY#*/}"
+          owner="${GITHUB_REPOSITORY_OWNER,,}"
+          name="$(echo "$repo" | tr '[:upper:]_ ' '[:lower:]--')"
+          case "$name" in ovos-skill-*) ;; *) name="ovos-skill-$name" ;; esac
+          module="${name//-/_}"
+          id="$name.$owner"
+          git mv ovos_skill_radio_example "$module"
+          grep -rlI --exclude-dir=.git -e ovos-skill-radio-example -e ovos_skill_radio_example -e emkay-voice/ovos-skill-radio-example . \
+            | xargs sed -i \
+                -e "s#emkay-voice/ovos-skill-radio-example#$GITHUB_REPOSITORY#g" \
+                -e "s#ovos-skill-radio-example.emkay-voice#$id#g" \
+                -e "s#ovos_skill_radio_example#$module#g" \
+                -e "s#ovos-skill-radio-example#$name#g"
+          sed -i "s#^authors = .*#authors = [{name = \"$GITHUB_REPOSITORY_OWNER\"}]#" pyproject.toml
+          git rm -q .github/workflows/make-it-yours.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Make the skill mine: $name ($id)"
+          git push

@@ -1,0 +1,16 @@
+{
+  "skill_id": "ovos-skill-radio-example.emkay-voice",
+  "source": "https://github.com/emkay-voice/ovos-skill-radio-example",
+  "name": "O meu rádio",
+  "description": "Toca as tuas rádios da internet – aqui três da SomaFM – com o leitor multimédia do OpenVoiceOS.",
+  "examples": [
+    "Toca Emkay Chill",
+    "Toca uma rádio"
+  ],
+  "tags": [
+    "radio",
+    "media",
+    "ocp",
+    "emkay"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "skill_id": "ovos-skill-radio-example.emkay-voice",
+  "source": "https://github.com/emkay-voice/ovos-skill-radio-example",
+  "name": "La meva ràdio",
+  "description": "Reprodueix les teves emissores de ràdio per internet – aquí tres de SomaFM – amb el reproductor de l'OpenVoiceOS.",
+  "examples": [
+    "Reprodueix Emkay Chill",
+    "Posa una mica de ràdio"
+  ],
+  "tags": [
+    "radio",
+    "media",
+    "ocp",
+    "emkay"
+  ]
+}

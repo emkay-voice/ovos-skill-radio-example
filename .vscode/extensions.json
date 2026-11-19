@@ -1,0 +1,5 @@
+{
+  // Emkay Dev: Emkay next to your code, to run and test the skill at once
+  // (https://dev.emkay.ai). Python: for writing the skill.
+  "recommendations": ["emkay-voice.emkay-dev", "ms-python.python"]
+}

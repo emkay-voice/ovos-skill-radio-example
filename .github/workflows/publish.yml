@@ -1,0 +1,32 @@
+# Publish the skill on PyPI when you make a release on GitHub.
+#
+# Once, on pypi.org: Your account → Publishing → "Add a new pending publisher"
+# with this repository's owner and name, workflow "publish.yml" and
+# environment "pypi". No password or token is stored anywhere: GitHub proves
+# to PyPI that this workflow runs in your repository (Trusted Publishing).
+#
+# Then each new version: Releases → "Draft a new release" → a tag like v0.1.1
+# → Publish. The version on PyPI is the tag without its "v".
+name: Publish to PyPI
+on:
+  release:
+    types: [published]
+permissions:
+  contents: read
+  id-token: write
+jobs:
+  pypi:
+    # not the templates themselves (emkay-voice/ovos-skill-*-example) – written
+    # so that "Make it yours" and Emkay: New skill, which put your repository's
+    # name in place of the template's, leave this line alone
+    if: ${{ github.repository_owner != 'emkay-voice' || !endsWith(github.event.repository.name, '-example') }}
+    runs-on: ubuntu-latest
+    environment: pypi
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: The release's version
+        run: sed -i "s/^version = .*/version = \"${GITHUB_REF_NAME#v}\"/" pyproject.toml
+      - run: pip install build && python -m build
+      - uses: pypa/gh-action-pypi-publish@release/v1

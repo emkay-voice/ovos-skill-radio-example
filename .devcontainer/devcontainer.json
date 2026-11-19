@@ -1,0 +1,18 @@
+// A ready workshop for this skill, in GitHub Codespaces or VS Code (Dev Containers):
+// Python, a text-only OpenVoiceOS (no microphone, no speaker) with your skill
+// installed, and ovos-tui-client to talk to it and run its tests.
+// The Emkay panel (the Emkay Dev extension) works here too.
+{
+  "name": "OpenVoiceOS skill",
+  "image": "mcr.microsoft.com/devcontainers/python:3.12",
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+  "postStartCommand": "bash .devcontainer/ovos.sh start",
+  "forwardPorts": [8181],
+  "portsAttributes": { "8181": { "label": "OpenVoiceOS bus", "onAutoForward": "silent" } },
+  "customizations": {
+    "vscode": {
+      "extensions": ["emkay-voice.emkay-dev", "ms-python.python"],
+      "settings": { "python.defaultInterpreterPath": "/usr/local/bin/python" }
+    }
+  }
+}

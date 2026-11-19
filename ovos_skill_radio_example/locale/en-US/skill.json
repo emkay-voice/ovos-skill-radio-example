@@ -1,0 +1,16 @@
+{
+  "skill_id": "ovos-skill-radio-example.emkay-voice",
+  "source": "https://github.com/emkay-voice/ovos-skill-radio-example",
+  "name": "My radio",
+  "description": "Plays your own internet radio stations – here three from SomaFM – with OpenVoiceOS' media player.",
+  "examples": [
+    "Play Emkay Chill",
+    "Play some radio"
+  ],
+  "tags": [
+    "radio",
+    "media",
+    "ocp",
+    "emkay"
+  ]
+}
