@@ -31,6 +31,8 @@ jobs:
                 -e "s#ovos_skill_radio_example#$module#g" \
                 -e "s#ovos-skill-radio-example#$name#g"
           sed -i "s#^authors = .*#authors = [{name = \"$GITHUB_REPOSITORY_OWNER\"}]#" pyproject.toml
+          grep -rlI --include=skill.json '"author": "emkay-voice"' . \
+            | xargs -r sed -i "s#\"author\": \"emkay-voice\"#\"author\": \"$GITHUB_REPOSITORY_OWNER\"#"
           git rm -q .github/workflows/make-it-yours.yml
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
